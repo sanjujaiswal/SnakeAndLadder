@@ -11,21 +11,29 @@ NOPLAY=2
 #Variables declaration
 currentPosition=0
 
-#Execution stert from here
-rollToPlay=$((RANDOM%3))
+#Execution start from here
+
+while [[ $currentPosition -ne $END_POSITION ]]
+do
+   rollToPlay=$((RANDOM%3))
 
 case $rollToPlay in
-$PLAY)
-	dieRoll=$(($((RANDOM%6))+1))
-	currentPosition=$((currentPosition+dieRoll))
-	;;
+	$PLAY)
+		dieRoll=$(($((RANDOM%6))+1))
+		currentPosition=$((currentPosition+dieRoll))
+		;;
 
-$SNAKE)
-	dieRoll=$(($((RANDOM%6))+1))
-	currentPosition=$((currentPosition-dieroll))
-	;;
-
-$NOPLAY)
-	currentPosition=$((currentPosition+0))
-	;;
+	$SNAKE)
+		dieRoll=$(($((RANDOM%6))+1))
+		if [[ $currentPosition -eq 0 || $currentPosition -lt $dieRoll ]]
+			then
+				currentPosition=$currentPosition;
+		else
+				currentPosition=$((currentPosition-dieroll))
+		fi
+		;;
+	$NOPLAY)
+		currentPosition=$((currentPosition+0))
+		;;
 esac
+done
