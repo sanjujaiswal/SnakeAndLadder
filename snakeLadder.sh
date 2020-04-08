@@ -12,7 +12,6 @@ NOPLAY=2
 currentPosition=0
 
 #Execution stert from here
-
 rollToPlay=$((RANDOM%3))
 
 case $rollToPlay in
